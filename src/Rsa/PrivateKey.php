@@ -77,9 +77,9 @@ class PrivateKey
         return openssl_pkey_get_details($this->privateKey);
     }
 
-    public function sign(string $data): string
+    public function sign(string $data, string|int $algorithm = OPENSSL_ALGO_SHA256): string
     {
-        openssl_sign($data, $signature, $this->privateKey, OPENSSL_ALGO_SHA256);
+        openssl_sign($data, $signature, $this->privateKey, $algorithm);
 
         return base64_encode($signature);
     }
